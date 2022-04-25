@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .background-dark{
+      background-color: #dfeb7a
+    }
+    .menu{
+      display: flex;
+      justify-content: left;
+      height: 150px;
+      width: 150px;
+      margin-left: -50px;
+    } 
+    .flasche{
+      display: flex;
+      justify-content: center;
+      height: 300px;
+      width: 300px;
+      margin-top: 150px;
+      margin-left: 200px;
+    }
+
+  </style>
+  <script>
+    function delay(time) {
+      return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    let running = 0;
+    
+    async function turnBottle(){
+      running ++;
+      if ( typeof turnBottle.winkelPre == 'undefined' ){
+        turnBottle.winkelPre = 0;
+      }
+      else{
+        turnBottle.winkelPre = turnBottle.winkel;
+      }
+      turnBottle.winkel = Math.random() * 360;
+      let winkelStr = turnBottle.winkel.toString() + 'deg';
+      let winkelNext = turnBottle.winkel;
+      let i = 1;
+      let loops = 500;
+      while (winkelNext <= turnBottle.winkel || i<loops && running <2) {
+        let winkelNextStr = winkelNext.toString() + 'deg';
+        document.getElementsByClassName("flasche")[0].style.cssText =  'transform: rotate('+winkelNextStr+');';
+        //winkelNext = winkelNext + 100 - (i/loops) * 100;
+        winkelNext = winkelNext + (loops-i)/i;
+        i++;
+        await delay(10);
+        console.log("i="+i);
+      }
+      running --;
+    }
+  </script>
+</head>
+<body class = "background-dark">
+  <div class="menu">
+    <img src="img/menu2.png">
+  </div>
+  <div class="flasche">
+    <img onclick =turnBottle() src="img/flasche.png">
+  </div>
+
+  
+</body>
+</html>
