@@ -13,8 +13,9 @@
   .background{
     background-image: url("img/1920x1080-V3-FullHD.jpeg");
     background-repeat: no-repeat;
-	  background-size: cover;
+	  background-size:cover;
 	  height: 100vh;
+    background-color: #26732b;
   }
 
   .dropbtn {
@@ -69,12 +70,14 @@
 
   </style>
   <script>
+
     function delay(time) {
       return new Promise(resolve => setTimeout(resolve, time));
     }
 
-    let spinning = 0;
-    
+    var spinning = 0;
+    var stopSpinning = 0;
+
     async function turnBottle(){
       spinning ++;
       console.log("spinning:" + spinning);
@@ -89,16 +92,19 @@
       let winkelNext = turnBottle.winkel;
       let i = 1;
       let loops = 500;
-      while (winkelNext <= turnBottle.winkel || i<loops && spinning == 1) {
+      while (winkelNext <= turnBottle.winkel || i<loops && spinning==1) {
         let winkelNextStr = winkelNext.toString() + 'deg';
         document.getElementsByClassName("flasche")[0].style.cssText =  'transform: rotate('+winkelNextStr+');';
-        //winkelNext = winkelNext + 100 - (i/loops) * 100;
         winkelNext = winkelNext + (loops-i)/i;
         i++;
         await delay(10);
-        //console.log("i="+i);
+        if(stopSpinning==1){
+          stopSpinning=0;
+          break;
+        }
       }
       spinning--;
+      console.log("spinning:" + spinning);
     }
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
@@ -121,7 +127,6 @@
     }
 
     function play() {
-      spinning++;
       document.querySelector(".flasche").style.cssText =  'transform: rotate(0deg);';
       document.querySelector(".flasche").className = "flasche";
       window.requestAnimationFrame(function(time) {
@@ -129,11 +134,11 @@
           document.querySelector(".flasche").className = "flasche flascheAnime";
         });
       });
-      spinning--;
     }
 
     function switchBottle() {
       console.log("switchBottle..");
+      stopSpinning = 1;
       window.onclick = function(event) {
         if (event.target.matches('.dropDownFlasche')) {
           const element = document.getElementById('flasche')
