@@ -9,23 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BottleSpinner</title>
   <style>
-  .background-dark{
-    background-color: #dfeb7a
+
+  .background{
+    background-image: url("img/1920x1080-V3-FullHD.jpeg");
+    background-repeat: no-repeat;
+	  background-size: cover;
+	  height: 100vh;
   }
 
   .dropbtn {
-    background-color: #dfeb7a;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
     border: none;
     cursor: pointer;
-    max-width: 160px;
-  }
-
-  /* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #dfeb7a;
+    max-width: 80px;
   }
 
   /* The container <div> - needed to position the dropdown content */
@@ -39,7 +34,6 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #dfeb7a;
     min-width: 320px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -53,10 +47,20 @@
     justify-content: center;
     height: 360px;
     width: 360px;
-    margin-top: 150px;
-    margin-bottom: 150px;
+    margin-top: 25px;
     margin-left: 0px;
+    position: relative;
   }
+
+  @keyframes flascheKeyFrames {
+      from {left:260px; top:0px;}
+      to {left:0px; top:0px;}
+    }
+  .flascheAnime{
+    animation-name: flascheKeyFrames;
+    animation-duration: 4s;
+  }
+
   .dropDownFlasche {
     max-height: 180px;
     max-width: auto;
@@ -69,10 +73,11 @@
       return new Promise(resolve => setTimeout(resolve, time));
     }
 
-    let running = 0;
+    let spinning = 0;
     
     async function turnBottle(){
-      running ++;
+      spinning ++;
+      console.log("spinning:" + spinning);
       if ( typeof turnBottle.winkelPre == 'undefined' ){
         turnBottle.winkelPre = 0;
       }
@@ -84,16 +89,16 @@
       let winkelNext = turnBottle.winkel;
       let i = 1;
       let loops = 500;
-      while (winkelNext <= turnBottle.winkel || i<loops && running <2) {
+      while (winkelNext <= turnBottle.winkel || i<loops && spinning == 1) {
         let winkelNextStr = winkelNext.toString() + 'deg';
         document.getElementsByClassName("flasche")[0].style.cssText =  'transform: rotate('+winkelNextStr+');';
         //winkelNext = winkelNext + 100 - (i/loops) * 100;
         winkelNext = winkelNext + (loops-i)/i;
         i++;
         await delay(10);
-        console.log("i="+i);
+        //console.log("i="+i);
       }
-      running --;
+      spinning--;
     }
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
@@ -114,27 +119,52 @@
         }
       }
     }
+
+    function play() {
+      spinning++;
+      document.querySelector(".flasche").style.cssText =  'transform: rotate(0deg);';
+      document.querySelector(".flasche").className = "flasche";
+      window.requestAnimationFrame(function(time) {
+        window.requestAnimationFrame(function(time) {
+          document.querySelector(".flasche").className = "flasche flascheAnime";
+        });
+      });
+      spinning--;
+    }
+
+    function switchBottle() {
+      console.log("switchBottle..");
+      window.onclick = function(event) {
+        if (event.target.matches('.dropDownFlasche')) {
+          const element = document.getElementById('flasche')
+          element.src=event.target.src;
+          play();
+        }
+      }
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
   </script>
 </head>
-<body class = "background-dark">
+<body class = "background">
   <div class="dropdown">
-    <img onclick="myMenu()" class="dropbtn" src="img/menu3.jpeg"></img>
-    <div id="myDropdown" class="dropdown-content">
-      <img src ="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_brauherrenalkfrei-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_dunkel-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_kellerbier-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_landbier-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_naturradler-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_premiumpilsener-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_radleralkfrei-nav.png" class="dropDownFlasche"></img>
-      <img src ="img/sortiment_einbecker_weihnachtsbier-nav.png" class="dropDownFlasche"></img>
+    <img onclick="myMenu()" class="dropbtn" src="img/menu3.png"></img>
+    <div id="myDropdown" class="dropdown-content" onclick="switchBottle()">
+      <img src="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_brauherrenalkfrei-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_dunkel-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_kellerbier-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_landbier-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_naturradler-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_premiumpilsener-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_radleralkfrei-nav.png" class="dropDownFlasche"></img>
+      <img src="img/sortiment_einbecker_weihnachtsbier-nav.png" class="dropDownFlasche"></img>
 
     </div>
   </div>
-  <div class="flasche">
-    <img onclick =turnBottle() src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
+  <div class="flasche flascheAnime">
+    <img onclick =turnBottle() id="flasche" src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
   </div>
 
   
