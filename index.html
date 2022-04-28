@@ -7,40 +7,45 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="mobile-web-app-capable" content="yes">
   <title>BottleSpinner</title>
-  <style>
-
+ 
+ <style>
   .background{
     background-image: url("img/1920x1080-V3-FullHD.jpeg");
     background-repeat: no-repeat;
-	  background-size:cover;
+	  background-size: cover;
 	  height: 100vh;
     display: flex;
+    justify-content: left;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    margin-left: 15px;
+    margin-top: 15px;
+    display: inline-block;
     justify-content: center;
   }
 
-  .dropbtn {
+  .dropdown-button {
+    position: relative;
     border: none;
     cursor: pointer;
     opacity: 66%;
     max-width: 80px;
   }
 
-  .dropbtn:hover, .dropbtn:focus{
+  .dropdown-button:hover, .dropdown-button:focus{
     opacity: 100%;
   }
 
-  .dropbtn:active {
+  .dropdown-button:active {
     opacity: 100%;
     transform: translateY(4px);
-  }
-
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    margin-left: 25%;
-    display: inline-block;
-    
   }
 
   /* Dropdown Content (Hidden by Default) */
@@ -58,11 +63,9 @@
   .flasche{
     display: flex;
     justify-content: center;
-    height: 60%;
-    width: 60%;
-    margin-top: 75px;
-    margin-left: 0px;
-    margin-right: 200px;
+    height: 50%;
+    width: 50%;
+    margin-top: 100px;
     position: relative;
     justify-self : center;
 
@@ -132,10 +135,13 @@
 
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function(event) {
-      if (!event.target.matches('.dropbtn')) {
+      console.log("onClick...");
+      if (!event.target.matches('.dropdown-button')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
+        console.log("daneben");
         for (i = 0; i < dropdowns.length; i++) {
+          console.log("daneben i:" + i);
           var openDropdown = dropdowns[i];
           if (openDropdown.classList.contains('show')) {
             openDropdown.classList.remove('show');
@@ -145,6 +151,7 @@
     }
 
     function play() {
+      console.log("play..");
       document.querySelector(".flasche").style.cssText =  'transform: rotate(0deg);';
       document.querySelector(".flasche").className = "flasche";
       window.requestAnimationFrame(function(time) {
@@ -159,22 +166,22 @@
       if(spinning>0){
         stopSpinning = 1;
       }
-      window.onclick = function(event) {
-        if (event.target.matches('.dropDownFlasche')) {
-          const element = document.getElementById('flasche')
-          element.src=event.target.src;
-          play();
-        }
+      if (event.target.matches('.dropDownFlasche')) {
+        const element = document.getElementById('flasche')
+        element.src=event.target.src;
+        play();
       }
       document.getElementById("myDropdown").classList.toggle("show");
     }
 
   </script>
+
 </head>
+
 <body class = "background">
 
   <div class="dropdown">
-    <img onclick="myMenu()" class="dropbtn" src="img/menu3.png"></img>
+    <img onclick="myMenu()" class="dropdown-button" src="img/menu3.png"></img>
     <div id="myDropdown" class="dropdown-content" onclick="switchBottle()">
       <img src="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
       <img src="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
