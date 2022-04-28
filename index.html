@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,21 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-    <script type='text/javascript' charset='utf-8'>
-        // Hides mobile browser's address bar when page is done loading.
-          window.addEventListener('load', function(e) {
-            setTimeout(function() { window.scrollTo(0, 1); }, 1);
-          }, false);
-    </script>  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="mobile-web-app-capable" content="yes">
     <title>BottleSpinner</title>
   </head>
 
   <body class = "background">
-
     <div class="dropdown">
       <img onclick="myMenu()" class="dropdown-button" src="img/menu3.png"></img>
-      <div id="myDropdown" class="dropdown-content" onclick="switchBottle(), switchWallPaper()">
+      <div id="dropDownContent" class="dropdown-content" onclick="switchBottle(), switchWallPaper()">
         <img src="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
         <img src="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
         <img src="img/sortiment_einbecker_brauherrenalkfrei-nav.png" class="dropDownFlasche"></img>
@@ -36,17 +28,16 @@
         <img src="img/wp_V2-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
         <img src="img/wp_V3-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
         <img src="img/wp_V1-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
-
-
-
       </div>
     </div>
 
     <div class="flasche flascheAnime">
       <img onclick =turnBottle() id="flasche" src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
     </div>
-
   </body>
+    <div class="viewMenu">
+        <img src="img/fullscreen.png" class= "fullscreenButton" onclick="toggleFullScreen()"></img>
+    </div>
 
 </html>
 
@@ -78,11 +69,11 @@
     max-width: 80px;
   }
 
-  .dropdown-button:hover, .dropdown-button:focus{
+  .dropdown-button:hover, .dropdown-button:focus, .fullscreenButton:hover, .fullscreenButton:focus{
     opacity: 100%;
   }
 
-  .dropdown-button:active {
+  .dropdown-button:active, .fullscreenButton:active{
     opacity: 100%;
     transform: translateY(4px);
   }
@@ -108,7 +99,6 @@
     width: 55%;
     margin-top: 125px;
     justify-self : center;
-
   }
 
   @keyframes flascheKeyFrames {
@@ -130,12 +120,54 @@
     max-width: auto;
     margin-top: 30px;
     justify-self : center;
-
+  }
+  .viewMenu{
+    display: block;
+    max-height: 10%;
+  }
+  .fullscreenButton {
+    position: relative;
+    border: none;
+    margin-left: 0px;
+    cursor: pointer;
+    opacity: 66%;
+    max-width: 80px;
   }
 
 </style>
 
-<script>
+<script type='text/javascript' charset='utf-8'>
+  // Hides mobile browser's address bar when page is done loading.
+    window.addEventListener('load', function(e) {
+      setTimeout(function() { window.scrollTo(0, 1); }, 1);
+    }, false);
+
+    function toggleFullScreen() {
+    var doc = window.document;
+    var docEl = doc.documentElement;
+
+    var requestFullScreen =
+      docEl.requestFullscreen ||
+      docEl.mozRequestFullScreen ||
+      docEl.webkitRequestFullScreen ||
+      docEl.msRequestFullscreen;
+    var cancelFullScreen =
+      doc.exitFullscreen ||
+      doc.mozCancelFullScreen ||
+      doc.webkitExitFullscreen ||
+      doc.msExitFullscreen;
+
+    if (
+      !doc.fullscreenElement &&
+      !doc.mozFullScreenElement &&
+      !doc.webkitFullscreenElement &&
+      !doc.msFullscreenElement
+    ) {
+      requestFullScreen.call(docEl);
+    } else {
+      cancelFullScreen.call(doc);
+    }
+  }
 
   function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -170,6 +202,7 @@
         break;
       }
     }
+    stopSpinning = 0;
     spinning--;
     console.log("spinning:" + spinning);
     console.log("i:" + i);
@@ -178,7 +211,7 @@
   /* When the user clicks on the button,
   toggle between hiding and showing the dropdown content */
   function myMenu() {
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("dropDownContent").classList.toggle("show");
   }
 
   // Close the dropdown menu if the user clicks outside of it
@@ -219,7 +252,7 @@
       element.src=event.target.src;
       play();
     }
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("dropDownContent").classList.toggle("show");
   }
 
   function switchWallPaper() {
@@ -233,7 +266,7 @@
       document.querySelector(".background").style.cssText ='background-image: url('+ event.target.src + ');';
       play();
     }
-    document.getElementById("myDropdown").classList.toggle("show");
+    document.getElementById("dropDownContent").classList.toggle("show");
   }
 
 </script>
