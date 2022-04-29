@@ -13,7 +13,7 @@
 
   <body class = "background">
     <div class="leftBar">
-      <img onclick="myMenu()" class="dropdown-button" src="img/menu3.png"></img>
+      <img onclick="myMenu()" class="dropdown-button" src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
       <div id="dropDownContent" class="dropdown-content" onclick="switchBottle(), switchWallPaper()">
         <img src="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
         <img src="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
@@ -25,6 +25,11 @@
         <img src="img/sortiment_einbecker_premiumpilsener-nav.png" class="dropDownFlasche"></img>
         <img src="img/sortiment_einbecker_radleralkfrei-nav.png" class="dropDownFlasche"></img>
         <img src="img/sortiment_einbecker_weihnachtsbier-nav.png" class="dropDownFlasche"></img>
+        <img src="img/sortiment-bockbiere_ainpoeckisch-nav.png" class="dropDownFlasche"></img>
+        <img src="img/sortiment-bockbiere_maiurbock-nav.png" class="dropDownFlasche"></img>
+        <img src="img/sortiment-bockbiere_urbockdunkel-nav.png" class="dropDownFlasche"></img>
+        <img src="img/sortiment-bockbiere_urbockhell-nav.png" class="dropDownFlasche"></img>
+        <img src="img/sortiment-bockbiere_winterbock-nav.png" class="dropDownFlasche"></img>
         <img src="img/wp_V2-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
         <img src="img/wp_V3-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
         <img src="img/wp_V1-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
@@ -56,12 +61,15 @@
   /* The container <div> - needed to position the dropdown content */
   .leftBar {
     position: relative;
+    background-color: aliceblue;
+    margin-right: 20%;
+
   }
 
   .dropdown-button {
     cursor: pointer;
     opacity: 66%;
-    max-width: 80px;
+    max-width: 20px;
   }
 
   .dropdown-button:hover, .dropdown-button:focus, .fullscreenButton:hover, .fullscreenButton:focus{
@@ -80,7 +88,7 @@
     min-width: 320px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    padding: 30px;
+    padding: 0px;
   }
 
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
@@ -116,12 +124,14 @@
     justify-self : center;
   }
   .rightBar{
+    background-color: aliceblue;
     position: relative;
+    margin-left: 20%;
   }
   .fullscreenButton {
     cursor: pointer;
     opacity: 66%;
-    max-width: 80px;
+    max-width: 60px;
   }
 
 </style>
