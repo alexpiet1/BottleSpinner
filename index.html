@@ -95,8 +95,8 @@
     display: flex;
     position: relative;
     justify-content: center;
-    height: 55%;
-    width: 55%;
+    height: 50%;
+    width: 50%;
     margin-top: 125px;
     justify-self : center;
   }
@@ -177,33 +177,24 @@
 
   async function turnBottle(){
     spinning ++;
-    console.log("spinning:" + spinning);
-    if ( typeof turnBottle.winkelPre == 'undefined' ){
-      turnBottle.winkelPre = 0;
-    }
-    else{
-      turnBottle.winkelPre = turnBottle.winkel;
-    }
-    turnBottle.winkel = Math.random() * 360;
-    let winkelStr = turnBottle.winkel.toString() + 'deg';
-    let winkelStepped = turnBottle.winkel;
-
-    let i = 1;
+    console.log("start spin --------- spinning:");
+    turnBottle.winkel = Math.random() * 360 + 3600;
+    let winkelStepped = 0;
     let loops = 500;
-    while (winkelStepped <= turnBottle.winkel || i<loops && spinning==1) {
-      let winkelNextStr = winkelStepped.toString() + 'deg';
-      document.getElementsByClassName("flasche")[0].style.cssText =  'transform: rotate('+winkelNextStr+');';
-      winkelStepped = winkelStepped + (loops-i)/i;
-      i++;
+    console.log("winkel:" + turnBottle.winkel);
+    console.log("winkelStepped:" + winkelStepped);
+    console.log("spinning:" + spinning);
+    console.log("stopSpinning:" + stopSpinning);
+    await delay(10);
+    while ((turnBottle.winkel-winkelStepped)>1 && spinning<=1 && stopSpinning==0) {
+      console.log("enter loop-----------------");
+      winkelStepped = winkelStepped + ((turnBottle.winkel-winkelStepped)/turnBottle.winkel)*50;
+      let winkelSteppedStr = winkelStepped.toString() + 'deg';
+      document.getElementsByClassName("flasche")[0].style.cssText =  'transform: rotate('+winkelSteppedStr+');';
       await delay(10);
-      if(stopSpinning==1){
-        stopSpinning=0;
-        break;
-      }
     }
     spinning--;
-    console.log("spinning:" + spinning);
-    console.log("i:" + i);
+    console.log("quit loop --------- spinning:" + spinning);
 
   }
   /* When the user clicks on the button,
