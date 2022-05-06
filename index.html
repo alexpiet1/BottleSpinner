@@ -13,7 +13,7 @@
 
   <body class = "background">
     <div class="leftBar">
-      <img onclick="myMenu()" class="dropdown-button" src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
+      <img onclick="myMenu()" class="dropdown-button" src="img/menu3.png"></img>
       <div id="dropDownContent" class="dropdown-content" onclick="switchBottle(), switchWallPaper()">
         <img src="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
         <img src="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
@@ -34,15 +34,16 @@
         <img src="img/wp_V3-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
         <img src="img/wp_V1-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
       </div>
-    </div>
+      <img src="img/homeButton.png" class= "homeButton" onclick="toggleFullScreen()"></img>
+      <img src="img/fullscreen.png" class= "fullscreenButton" onclick="toggleFullScreen()"></img>
 
+
+    </div>
     <div class="flasche flascheAnime">
       <img onclick =turnBottle() id="flasche" src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
     </div>
   </body>
-    <div class="rightBar">
-        <img src="img/fullscreen.png" class= "fullscreenButton" onclick="toggleFullScreen()"></img>
-    </div>
+
 
 </html>
 
@@ -51,8 +52,8 @@
     background-image: url("img/wp_V1-HighResAndroid.jpeg");
     background-repeat: no-repeat;
 	  background-size: cover;
-    display: flex;
-    justify-content: center;
+    display: block;
+    justify-content:space-between;
     background-position: top;
 	  height: 100vh;
     margin-top: 5%;
@@ -60,16 +61,17 @@
 
   /* The container <div> - needed to position the dropdown content */
   .leftBar {
+    background-color: green;
     position: relative;
-    background-color: aliceblue;
-    margin-right: 20%;
+    right:0%;
+    justify-content: center;
 
   }
 
   .dropdown-button {
     cursor: pointer;
     opacity: 66%;
-    max-width: 20px;
+    max-width: 60px;
   }
 
   .dropdown-button:hover, .dropdown-button:focus, .fullscreenButton:hover, .fullscreenButton:focus{
@@ -96,7 +98,7 @@
 
   .flasche{
     display: flex;
-    position: relative;
+    position: absolute;
     justify-content: center;
     height: 55%;
     width: 55%;
@@ -126,9 +128,18 @@
   .rightBar{
     background-color: aliceblue;
     position: relative;
-    margin-left: 20%;
+    float: right;
   }
   .fullscreenButton {
+    cursor: pointer;
+    opacity: 66%;
+    max-width: 60px;
+  }
+  .topBar{
+    background-color: aliceblue;
+    position:relative
+  }
+  .homeButton {
     cursor: pointer;
     opacity: 66%;
     max-width: 60px;
