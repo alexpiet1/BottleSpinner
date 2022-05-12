@@ -15,24 +15,17 @@
     <div class="leftBar">
       <img onclick="myMenu()" class="dropdown-button" src="img/menu3.png"></img>
       <div id="dropDownContent" class="dropdown-content" onclick="switchBottle(), switchWallPaper()">
-        <img src="img/sortiment_einbecker_blutorange-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_brauherrenpils-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_brauherrenalkfrei-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_dunkel-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_kellerbier-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_landbier-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_naturradler-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_premiumpilsener-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_radleralkfrei-nav.png" class="dropDownFlasche"></img>
-        <img src="img/sortiment_einbecker_weihnachtsbier-nav.png" class="dropDownFlasche"></img>
-        <img src="img/wp_V2-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
-        <img src="img/wp_V3-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
-        <img src="img/wp_V1-HighResAndroid.jpeg" class="dropDownWallPaper"></img>
+        <img src="img/Pilsener_0,5l.png" class="dropDownFlasche"></img>
+        <img src="img/Export_0,5l.png" class="dropDownFlasche"></img>
+        <img src="img/ExtrAle_0,5l.png" class="dropDownFlasche"></img>
+        <img src="img/Mandarina_0,5l.png" class="dropDownFlasche"></img>
+        <img src="img/Weizen_0,5l.png" class="dropDownFlasche"></img>
+        <img src="img/Mock_up_Friedrichshainer_0,5l.png" class="dropDownFlasche"></img>
       </div>
     </div>
 
     <div class="flasche flascheAnime">
-      <img onclick =turnBottle() id="flasche" src="img/sortiment_einbecker_brauherrenpils-nav.png"></img>
+      <img onclick =turnBottle() id="flasche" src="img/Mandarina_0,5l.png"></img>
     </div>
   </body>
     <div class="rightBar">
@@ -43,25 +36,26 @@
 
 <style>
   .background{
-    background-image: url("img/wp_V2-HighResAndroid.jpeg");
-    background-repeat: no-repeat;
-	  background-size: cover;
+    background-image: url("img/flessa-logo.png");
+    background-color: black;
+    background-repeat:no-repeat;
+    background-position: center;
     display: flex;
     justify-content: center;
-    background-position: top;
 	  height: 100vh;
-    margin-top: 5%;
   }
 
   /* The container <div> - needed to position the dropdown content */
   .leftBar {
     position: relative;
+    margin-right: 0px;
+    margin-left: 30px;
   }
 
   .dropdown-button {
     cursor: pointer;
     opacity: 66%;
-    max-width: 80px;
+    max-width: 66px;
   }
 
   .dropdown-button:hover, .dropdown-button:focus, .fullscreenButton:hover, .fullscreenButton:focus{
@@ -69,18 +63,21 @@
   }
 
   .dropdown-button:active, .fullscreenButton:active{
+    cursor: pointer;
     opacity: 100%;
     transform: translateY(4px);
   }
 
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
+    background-color: black;
+    background-blend-mode: darken;
     display: none;
     position: absolute;
-    min-width: 320px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    min-width: 400px;
+    box-shadow: 0px 8px 16px 0px rgba(231, 17, 17, 0.2);
     z-index: 1;
-    padding: 30px;
+    padding: -50px;
   }
 
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
@@ -90,9 +87,9 @@
     display: flex;
     position: relative;
     justify-content: center;
-    height: 55%;
-    width: 55%;
-    margin-top: 125px;
+    height: 66%;
+    width: 66%;
+    margin-top: 100px;
   }
 
   @keyframes flascheKeyFrames {
@@ -108,6 +105,7 @@
     max-height: 180px;
     max-width: auto;
     justify-self : center;
+    margin-top: 30px;
   }
   .dropDownWallPaper {
     max-height: 90px;
@@ -117,11 +115,14 @@
   }
   .rightBar{
     position: relative;
+    margin-left: 0px;
+    margin-right: 30px;
+
   }
   .fullscreenButton {
     cursor: pointer;
     opacity: 66%;
-    max-width: 80px;
+    max-width: 66px;
   }
 
 </style>
